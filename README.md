@@ -7,13 +7,13 @@ This repo contains a utility for sanitising Javascript objects before passing th
 Add to your `package.json` by
 
 ```sh
-yarn add postMessage-filter
+yarn add post_message_filter
 ```
 
 Then in your code
 
 ```js
-import { deleteNonClonable } from 'postMessage-filter';
+import deleteNonClonable from 'post_message_filter/delete_non_clonable';
 
 ...
 
