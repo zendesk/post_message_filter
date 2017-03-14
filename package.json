@@ -1,0 +1,30 @@
+{
+  "name": "post_message_filter",
+  "version": "1.0.0",
+  "description": "Sanitise and filter objects to avoid errors in postMessage ",
+  "main": "index.js",
+  "repository": "git@github.com:zendesk/postMessage-filter.git",
+  "author": "<rsandler@zendesk.com>",
+  "license": "Apache-2.0",
+  "files": [
+    "index.ts",
+    "index.js",
+    "delete_non_clonable.ts",
+    "delete_non_clonable.js"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "karma start",
+    "ci": "karma start --browsers Firefox"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.5.45",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-typescript": "beta",
+    "typescript": "^2.2.1"
+  }
+}
