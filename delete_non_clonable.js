@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 // http://stackoverflow.com/a/32673910/1911487
 // https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
 var unclonableSentinel = Object.freeze({});
@@ -24,7 +24,7 @@ function deleteNonClonable(obj, depth) {
         // recursed 100 times, we're probably hanging forever
         throw new Error('Possible infinite recursion in postMessage argument.');
     }
-    if (Object(obj) !== obj) {
+    if (Object(obj) !== obj) { // check for primitive values
         return obj;
     }
     var type = toStringForObject(obj);
@@ -76,6 +76,20 @@ function deleteNonClonable(obj, depth) {
             });
             return newSet_1;
         }
+        case 'XMLHttpRequest':
+            var newXHR = {
+                readyState: obj.readyState,
+                responseText: obj.responseText,
+                status: obj.status,
+                statusText: obj.statusText,
+                responseJSON: undefined
+            };
+            try {
+                newXHR.responseJSON = JSON.parse(obj.responseText);
+            }
+            catch (error) { }
+            ;
+            return newXHR;
         default:
             if (/^(?:Int|Uint|Float)(?:8|16|32|64)Array$/.test(type)) {
                 // close enough to https://developer.mozilla.org/en-US/docs/Web/API/ArrayBufferView
@@ -84,4 +98,4 @@ function deleteNonClonable(obj, depth) {
             return unclonableSentinel;
     }
 }
-exports["default"] = deleteNonClonable;
+exports.default = deleteNonClonable;

@@ -77,6 +77,20 @@ export default function deleteNonClonable(obj: any, depth: number = 0) {
       });
       return newSet;
     }
+    case 'XMLHttpRequest':
+      const newXHR = {
+        readyState: obj.readyState,
+        responseText: obj.responseText,
+        status: obj.status,
+        statusText: obj.statusText,
+        responseJSON: undefined
+      };
+
+      try {
+        newXHR.responseJSON = JSON.parse(obj.responseText);
+      } catch (error) {};
+
+      return newXHR;
     default:
       if (/^(?:Int|Uint|Float)(?:8|16|32|64)Array$/.test(type)) {
         // close enough to https://developer.mozilla.org/en-US/docs/Web/API/ArrayBufferView
