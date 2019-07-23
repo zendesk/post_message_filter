@@ -81,8 +81,7 @@ function deleteNonClonable(obj, depth) {
                 readyState: obj.readyState,
                 responseText: obj.responseText,
                 status: obj.status,
-                statusText: obj.statusText,
-                responseJSON: undefined
+                statusText: obj.statusText
             };
             try {
                 newXHR.responseJSON = JSON.parse(obj.responseText);
