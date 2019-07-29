@@ -22,7 +22,7 @@ module.exports = function(config) {
     browsers: ['Chrome'],
     singleRun: true,
     concurrency: Infinity,
-
+    reporters: [],
     karmaTypescriptConfig: {
       tsconfig: 'tsconfig.json',
       include: ['spec/*.ts']

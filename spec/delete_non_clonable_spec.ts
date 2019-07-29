@@ -24,7 +24,7 @@ describe('#deleteNonClonable', () => {
   });
 
   it('filters sets', () => {
-    expect(deleteNonClonable(new Set(['a', blob, function() {}]))).toEqual(new Set(['a', blob, {}]));
+    expect(deleteNonClonable(new Set(['a', blob, function() {}]))).toEqual(new Set(['a', blob]));
   });
 
   it('filters objects', () => {
