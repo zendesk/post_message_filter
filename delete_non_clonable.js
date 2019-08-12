@@ -82,7 +82,7 @@ function deleteNonClonable(obj, depth) {
                   status: obj.status,
                   statusText: obj.statusText
             };
-            if (obj.reponseType !== 'blob') {
+            if (obj.reponseType === 'text' || obj.responseType === '') {
               newXHR.responseText = obj.responseText;
               try {
                   newXHR.responseJSON = JSON.parse(obj.responseText);
