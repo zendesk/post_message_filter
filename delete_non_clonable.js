@@ -78,16 +78,18 @@ function deleteNonClonable(obj, depth) {
         }
         case 'XMLHttpRequest':
             var newXHR = {
-                readyState: obj.readyState,
-                responseText: obj.responseText,
-                status: obj.status,
-                statusText: obj.statusText
+                  readyState: obj.readyState,
+                  status: obj.status,
+                  statusText: obj.statusText
             };
-            try {
-                newXHR.responseJSON = JSON.parse(obj.responseText);
-            }
-            catch (error) { }
-            ;
+            if (obj.reponseType !== 'blob') {
+              newXHR.responseText = obj.responseText;
+              try {
+                  newXHR.responseJSON = JSON.parse(obj.responseText);
+              }
+              catch (error) { }
+              ;
+            };
             return newXHR;
         default:
             if (/^(?:Int|Uint|Float)(?:8|16|32|64)Array$/.test(type)) {
