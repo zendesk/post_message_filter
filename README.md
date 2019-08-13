@@ -7,7 +7,7 @@ This repo contains a utility for sanitising Javascript objects before passing th
 Add to your `package.json` by
 
 ```sh
-yarn add post_message_filter
+npm add post_message_filter
 ```
 
 Then in your code
@@ -25,8 +25,10 @@ function postMessageWrapper(message, targetOrigin) {
 
 ## Building
 
+The `delete_non_clonable.js` is the **build** file, the `.ts` file the source.
+
 ```sh
-yarn build
+npm run build
 ```
 
 ## Browser Support
