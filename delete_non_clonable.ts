@@ -20,9 +20,10 @@ function toStringForObject(object: any): string {
 
 interface XHRObject {
   readyState: number
-  responseText: string
   status: string
   statusText: string
+  response?: string
+  responseText?: string
   responseJSON?: object
 }
 
@@ -88,10 +89,14 @@ export default function deleteNonClonable(obj: any, depth: number = 0) {
     case 'XMLHttpRequest':
       const newXHR: XHRObject = {
         readyState: obj.readyState,
-        responseText: obj.responseText,
         status: obj.status,
         statusText: obj.statusText
       };
+
+      if (obj.responseType === 'arraybuffer' || obj.responseType === 'blob')
+        newXHR.response = obj.response;
+      else
+        newXHR.responseText = obj.responseText;
 
       try {
         newXHR.responseJSON = JSON.parse(obj.responseText);

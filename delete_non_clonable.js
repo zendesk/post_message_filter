@@ -79,10 +79,13 @@ function deleteNonClonable(obj, depth) {
         case 'XMLHttpRequest':
             var newXHR = {
                 readyState: obj.readyState,
-                responseText: obj.responseText,
                 status: obj.status,
                 statusText: obj.statusText
             };
+            if (obj.responseType === 'arraybuffer' || obj.responseType === 'blob')
+                newXHR.response = obj.response;
+            else
+                newXHR.responseText = obj.responseText;
             try {
                 newXHR.responseJSON = JSON.parse(obj.responseText);
             }
