@@ -1,6 +1,6 @@
 {
   "name": "post_message_filter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Sanitise and filter objects to avoid errors in postMessage ",
   "main": "index.js",
   "repository": "git@github.com:zendesk/postMessage-filter.git",
